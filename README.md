@@ -10,3 +10,7 @@ All codes for boot sector programming are compiled using command:
 To run the boot sector code, use `bochs` or `qemu`. 
 
 ![image](https://github.com/samsepi0x0/OS-DEV/assets/64140687/13d01f9d-0cb0-41a7-a58a-66ed1562b0e3)
+
+## Progress Update:
+	- 	Can print values from register and memory addresses.
+	-	Can now successfully read from disk.
