@@ -14,3 +14,5 @@ To run the boot sector code, use `bochs` or `qemu`.
 ## Progress Update:
  - Print values from register and memory addresses.
  - Successfully read data from disk sectors.
+ - Defined GDT in 32 Bit mode and printing routine for 32 bit mode.
+ - Switched for 16 bit Real Mode to 32 bit Protected Mode.
