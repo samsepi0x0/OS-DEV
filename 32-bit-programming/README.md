@@ -24,19 +24,23 @@ CPU has no idea how long the GDT is, it gets the address of GDT Descriptor (some
 Once GDT and descriptor are created, we need to switch from 16 bit mode to 32 bit protected mode.
 
 #### Switching to 32 bit mode:
-    -   disable interrupts using cli instruction (clear interrupts)
-    -   lgdt [gdt_descriptor] to load the gdt to the memory.
-    -   Set first bit of Special CPU control register cr0.
-        -   mov eax, cr0        ; we copy value of cr0 to eax
-        -   or eax, 0x01        ; or by 0x01 so first bit is set, rest unaffected.
-        -   mov cr0, eax        ; copy back the value to cr0
-    -   After cr0 is updated, CPU is in 32 bit mode*.
-    -   Force CPU to finish the jobs in pipeline, so later instructions are executed in correct mode.
-    -   use far jump to flush the pipeline (as CPU does not know what comes after jmp, so it clears the pipelines in this instruction or the call instruction).
-    -   jmp <segment> : <address offset>
-    -   jmp CODE_SEG:start_protected_mode
-        -   [bits 32]
-        -   start_protected_mode:
-            -   ...         ; by now the cpu is running in 32 bit mode.
-    -   Once in 32 bit mode, update all segments according to 32 bit mode instead of the default invalid 16 bit mode values.
+
+-   disable interrupts using cli instruction (clear interrupts)
+-   lgdt [gdt_descriptor] to load the gdt to the memory.
+-   Set first bit of Special CPU control register cr0.
+    -   mov eax, cr0        ; we copy value of cr0 to eax
+    -   or eax, 0x01        ; or by 0x01 so first bit is set, rest unaffected.
+    -   mov cr0, eax        ; copy back the value to cr0
+-   After cr0 is updated, CPU is in 32 bit mode*.
+-   Force CPU to finish the jobs in pipeline, so later instructions are executed in correct mode.
+-   use far jump to flush the pipeline (as CPU does not know what comes after jmp, so it clears the pipelines in this instruction or the call instruction).
+-   jmp <segment> : <address offset>
+-   jmp CODE_SEG:start_protected_mode
+    -   [bits 32]
+    -   start_protected_mode:
+        -   ...         ; by now the cpu is running in 32 bit mode.
+-   Once in 32 bit mode, update all segments according to 32 bit mode instead of the default invalid 16 bit mode values.
+
+![image](https://github.com/samsepi0x0/OS-DEV/assets/64140687/7b774bc4-e4c0-4e6a-ac70-f58cbdab0faf)
+
 
