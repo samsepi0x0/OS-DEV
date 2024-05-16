@@ -13,3 +13,6 @@ CPU instructions:
  -   store the base address of the previous stack frame so that it can be used later on when returning from the calling function.
  -   mov ebp, esp: create a new stack frame on top of existing one by defining it at the top(esp) of the current stack frame.
  -   After function's work is done, pop ebp to restore the base pointer of the original stack frame and return from the function to (IP + 1)th instruction.
+
+Compiler Optimizations:
+ -  https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
